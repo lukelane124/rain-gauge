@@ -1,0 +1,23 @@
+syntax = "proto3"
+
+message RainDumpEvent {
+	uint32 sequenceNumber = 1;
+	uint32 timeSinceLastBucketDump = 2;
+}
+
+message StartEvent {
+	uint32 RTC_seconds_since_jan_1 = 1;
+	uint32 year = 2;
+}
+
+message Status {
+	uint32 running_bucket_dumps_since_reset = 1;
+	float uptime_hours = 2;
+}
+
+message Event {
+	oneof {
+		RainDumpEvent = 1;
+		StartEvent = 2;
+	}
+}
